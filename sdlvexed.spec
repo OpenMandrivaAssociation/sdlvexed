@@ -10,6 +10,7 @@ Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Games/Puzzles
 Url: http://core.segfault.pl/~krzynio/vexed/
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: ImageMagick
 BuildArch: noarch
 
