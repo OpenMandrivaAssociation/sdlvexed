@@ -34,15 +34,6 @@ cd %_gamesdatadir/%name
 ./vexed
 EOF
 chmod 755 %buildroot%_gamesbindir/%name %buildroot%_gamesdatadir/%name/vexed
-mkdir -p $RPM_BUILD_ROOT{%{_menudir},%_liconsdir,%_miconsdir}
-cat > %buildroot%_menudir/%name << EOF
-?package(%{name}):command="%{_gamesbindir}/%name" \
-		  icon="%name.png" \
-		  needs="x11" \
-		  section="More Applications/Games/Puzzles" \
-		  title="SDL Vexed" \
-		  longtitle="Colourful puzzle game" xdg="true"
-EOF
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -75,7 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 %_gamesbindir/%name
 %_gamesdatadir/%name
 %_datadir/applications/mandriva*
-%_menudir/%name
 %_liconsdir/%name.png
 %_iconsdir/%name.png
 %_miconsdir/%name.png
