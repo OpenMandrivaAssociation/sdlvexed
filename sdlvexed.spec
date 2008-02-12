@@ -15,7 +15,6 @@ BuildRequires: ImageMagick
 BuildArch: noarch
 
 %description
-
 SDL Vexed is a puzzle game written in Perl-SDL. It is a clone of the
 classic PalmOS game Vexed.
 
