@@ -2,7 +2,7 @@
 %define version 0.6
 %define release %mkrel 3
 
-Summary: Vexed is a colourful puzzle
+Summary: Colourful puzzle
 Name: %{name}
 Version: %{version}
 Release: %{release}
