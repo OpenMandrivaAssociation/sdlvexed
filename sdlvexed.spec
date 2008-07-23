@@ -1,6 +1,6 @@
 %define name sdlvexed
 %define version 0.6
-%define release %mkrel 4
+%define release %mkrel 6
 
 Summary: Colourful puzzle
 Name: %{name}
