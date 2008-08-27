@@ -1,6 +1,6 @@
 %define name sdlvexed
 %define version 0.6
-%define release %mkrel 6
+%define release %mkrel 7
 
 Summary: Colourful puzzle
 Name: %{name}
@@ -46,6 +46,7 @@ StartupNotify=true
 Categories=X-MandrivaLinux-MoreApplications-Games-Puzzles;Game;LogicGame;
 EOF
 
+mkdir -p %buildroot{%_liconsdir,%_miconsdir}
 convert -scale 48x48 gfx/block1.png %buildroot%_liconsdir/%name.png
 convert -scale 32x32 gfx/block1.png %buildroot%_iconsdir/%name.png
 convert -scale 16x16 gfx/block1.png %buildroot%_miconsdir/%name.png
@@ -56,9 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %mdkversion < 200900
 %post
 %{update_menus}
-%endif
-
-%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %endif
