@@ -1,0 +1,54 @@
+--- vexed.orig	2007-03-25 12:59:08.000000000 -0300
++++ vexed	2007-03-25 13:22:59.000000000 -0300
+@@ -14,6 +14,8 @@
+ use SDL::Surface;
+ use SDL::Event;
+ use SDL::Font;
++use SDL::SFont;
++use SDL::Constants;
+ use SDL::Mixer;
+ 
+ use strict;
+@@ -590,7 +592,7 @@
+     if ($type eq 'small') {    $smallfont->use() } else { $font->use() };
+ 
+     if ($p eq 'R'){
+-	$x1-=SDL_TEXTWIDTH($text);
++	$x1-=SDL::SFont::TextWidth($text);
+     }
+     if (! $noclear){
+ 	&clear_text($name);
+@@ -598,7 +600,7 @@
+ 
+     $app->print($x1,$y1, $text);
+     $ag->{font}->{$name}->{x1}=$x1;$ag->{font}->{$name}->{y1}=$y1;
+-    $ag->{font}->{$name}->{x2}=$x1+SDL_TEXTWIDTH($text); $ag->{font}->{$name}->{y2}=$y1 + $h;
++    $ag->{font}->{$name}->{x2}=$x1+SDL::SFont::TextWidth($text); $ag->{font}->{$name}->{y2}=$y1 + $h;
+     $app->flip;
+ }
+ 
+@@ -774,12 +776,10 @@
+ 	foreach (@sounds) {
+ 	    my $sound_path = "$PREFIX/gfx/$_.wav";
+ 	    $sound{$_} = new SDL::Sound($sound_path);
+-	    if ($sound{$_}{-data}) {
+-		if ($_ eq 'pop'){
+-		    $sound{$_}->volume(25);
+-		} else {
+-		    $sound{$_}->volume(90);
+-		}
++	    if ($_ eq 'pop'){
++		$sound{$_}->volume(25);
++	    } else {
++		$sound{$_}->volume(90);
+ 	    }
+ 	}
+ 	$mixer_enabled=1;
+@@ -805,7 +805,6 @@
+     $backgr->blit($high_rect, $background_orig, $high_rect);
+     if ($mixer_enabled){ # enable music if needed
+        $music = new SDL::Music("$PREFIX/gfx/vexed.xm");
+-       $music->{-data} or print STDERR "Warning, could not create new music (reason: ", $app->error(), ").\n";
+        $mixer->play_music($music, -1);
+        if (!$ag->{music}){
+ 	   $mixer->pause_music();
